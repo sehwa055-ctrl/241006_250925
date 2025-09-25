@@ -1,6 +1,7 @@
 
 import streamlit as st
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 import numpy as np
 
 st.title("삼각형 판별 및 그리기 (피타고라스의 정리 활용)")
@@ -51,12 +52,14 @@ def triangle_type_and_explanation(a, b, c):
         explanation += "→ 가장 긴 변의 제곱이 나머지 두 변의 제곱의 합보다 크므로 둔각삼각형입니다."
         return "둔각삼각형", explanation
 
-def draw_triangle(a, b, c):
     # 삼각형의 꼭짓점 좌표 계산 (A: (0,0), B: (a,0), C: (x,y))
     # 코사인 법칙 이용
     if not is_triangle(a, b, c):
         st.warning("삼각형이 아닙니다. 그림을 그릴 수 없습니다.")
         return
+    # 한글 폰트 설정
+    font_path = "fonts/NanumGothic-Regular.ttf"
+    fontprop = fm.FontProperties(fname=font_path)
     # A(0,0), B(a,0)
     # C(x, y) 계산
     # x = (a^2 + c^2 - b^2) / (2a)
@@ -71,12 +74,12 @@ def draw_triangle(a, b, c):
     fig, ax = plt.subplots()
     ax.plot(points[:,0], points[:,1], 'bo-')
     ax.set_aspect('equal')
-    ax.set_title('삼각형 그림')
+    ax.set_title('삼각형 그림', fontproperties=fontprop)
     ax.grid(True)
     # 꼭짓점 라벨
-    ax.text(0, 0, 'A', fontsize=12, color='red')
-    ax.text(a, 0, 'B', fontsize=12, color='red')
-    ax.text(x, y, 'C', fontsize=12, color='red')
+    ax.text(0, 0, 'A', fontsize=12, color='red', fontproperties=fontprop)
+    ax.text(a, 0, 'B', fontsize=12, color='red', fontproperties=fontprop)
+    ax.text(x, y, 'C', fontsize=12, color='red', fontproperties=fontprop)
     st.pyplot(fig)
 
 
