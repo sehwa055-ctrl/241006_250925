@@ -25,6 +25,7 @@ def is_triangle(a, b, c):
     return a + b > c and a + c > b and b + c > a
 
 
+
 def triangle_type_and_explanation(a, b, c):
     sides = sorted([a, b, c])
     x, y, z = sides  # x <= y <= z
@@ -52,6 +53,7 @@ def triangle_type_and_explanation(a, b, c):
         explanation += "→ 가장 긴 변의 제곱이 나머지 두 변의 제곱의 합보다 크므로 둔각삼각형입니다."
         return "둔각삼각형", explanation
 
+def draw_triangle(a, b, c):
     # 삼각형의 꼭짓점 좌표 계산 (A: (0,0), B: (a,0), C: (x,y))
     # 코사인 법칙 이용
     if not is_triangle(a, b, c):
